@@ -1,5 +1,5 @@
 import CacheHelper from './utils/cache-helper';
- 
+
 // Daftar asset yang akan dicaching
 const assetsToCache = [
   './',
@@ -18,19 +18,17 @@ const assetsToCache = [
   './sw.bundle.js',
 ];
 
-self.addEventListener("install", (event) => {
-
+self.addEventListener('install', (event) => {
   // TODO: Caching App Shell Resource
   event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
 });
 
-self.addEventListener("activate", (event) => {
-
+self.addEventListener('activate', (event) => {
   // TODO: Delete old caches
   event.waitUntil(CacheHelper.deleteOldCache());
 });
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener('fetch', (event) => {
   // TODO: Add/get fetch request to/from caches
   event.respondWith(CacheHelper.revalidateCache(event.request));
 });
